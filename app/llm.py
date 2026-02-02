@@ -12,7 +12,7 @@ def ask_llm(message: str) -> str:
         ],
         "stream": False,
         "options": {
-            "temperature": .7
+            "temperature": 2
         }
     }
 

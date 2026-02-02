@@ -1,13 +1,10 @@
-from fastapi import FastAPI, HTTPException
-from app.schema import ChatRequest, ChatResponse
-from app.llm import ask_llm
+from fastapi import FastAPI
+from app import router
+app = FastAPI(title="Ollama Python API", version="1.1")
 
-app = FastAPI(title="Ollama Python API", version="1.0")
+app.include_router(router.health_router, prefix="/health")
+app.include_router(router.chat_router, prefix="/chat")
 
-@app.post("/chat", response_model=ChatResponse)
-def chat(req: ChatRequest):
-    try:
-        answer = ask_llm(req.message)
-        return {"message": answer}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+@app.get("/")
+async def root():
+    return {"message": "API is running"}
