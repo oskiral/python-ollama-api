@@ -1,18 +1,18 @@
 import requests
 
 OLLAMA_URL = "http://localhost:11434/api/chat"
-MODEL_NAME = "mistral"
 
-def ask_llm(message: str) -> str:
+def ask_llm(message: str, model_name : str, temperature : float, max_tokens : int) -> str:
     payload = {
-        "model": MODEL_NAME,
+        "model": model_name,
         "messages": [
             {"role": "system", "content": "You are a nice AI assistant"},
             {"role": "user", "content": message}
         ],
         "stream": False,
         "options": {
-            "temperature": 2
+            "temperature": temperature,
+            "num_predict": max_tokens
         }
     }
 

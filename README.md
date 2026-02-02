@@ -4,6 +4,7 @@ A lightweight **FastAPI wrapper** for **Ollama**, providing a way to interact wi
 ### Features
 - **Health Checks:** Built-in monitoring for port `11434`.
 - **Router:** Modular design using `APIRouter`.
+- **Request Validation** using `pydantic`
 
 ## Installation
 ```bash
